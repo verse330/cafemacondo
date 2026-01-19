@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macondo | Cafe & Art Space</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121f18; /* Slightly lighter base */
+            color: #e7e5e4;
+        }
+
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-scrolled {
+            background: rgba(18, 31, 24, 0.9);
+            backdrop-filter: blur(10px);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #eab308;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121f18;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.4);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-yellow-500/30 selection:text-white overflow-x-hidden relative">
+    <div class="grain"></div>
+
+    <div class="fixed inset-0 bg-gradient-to-br from-[#0a1b11] via-[#162a1e] to-[#2d2914] -z-10"></div>
+    <div class="fixed inset-0 opacity-20 pointer-events-none -z-10" style="background-image: radial-gradient(circle at 50% 50%, rgba(138, 112, 24, 0.2) 0%, transparent 70%);"></div>
+
+    <nav id="navbar" class="fixed z-[100] w-full transition-all duration-500 ease-in-out px-6 md:px-12 py-8 top-0">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="uppercase text-xl text-white tracking-[0.3em] font-serif mix-blend-difference">
+                Macondo
+            </a>
+
+            <div class="hidden md:flex space-x-12 text-[10px] tracking-[0.2em] uppercase font-medium text-stone-400">
+                <a href="#home" class="nav-link hover:text-white transition-colors">Home</a>
+                <a href="#about" class="nav-link hover:text-white transition-colors">Philosophy</a>
+                <a href="#menu" class="nav-link hover:text-white transition-colors">Provisions</a>
+                <a href="#gallery" class="nav-link hover:text-white transition-colors">Murals</a>
+            </div>
+
+            <button class="md:hidden text-white" id="mobile-toggle">
+                <iconify-icon icon="lucide:menu" width="24"></iconify-icon>
+            </button>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center justify-center pt-24 pb-12 px-6 md:px-12 max-w-7xl mx-auto" id="home">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="relative w-full order-2 lg:order-1 group">
+                <div class="glass-panel overflow-hidden z-10 aspect-[4/5] border-white/10 border relative shadow-2xl">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d4203002-c3a1-4a7d-a289-e61587765a25_1600w.png" 
+                         alt="Mural of Gabriel García Márquez" 
+                         class="absolute inset-0 w-full h-full object-cover grayscale contrast-110 brightness-75 group-hover:scale-105 transition-transform duration-[2000ms] ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                </div>
+                <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-yellow-600/20 rounded-full blur-[100px] -z-10 group-hover:bg-yellow-500/30 transition-all duration-1000"></div>
+            </div>
+
+            <div class="flex flex-col order-1 lg:order-2 space-y-10">
+                <div class="space-y-4">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl text-white font-serif leading-[1.05] tracking-tight">
+                        <span class="italic font-light text-stone-500 block">"There is</span>
+                        always something <br>
+                        <span class="text-yellow-500/80">left to love."</span>
+                    </h1>
+                </div>
+                <div class="max-w-md space-y-8">
+                    <p class="text-lg font-light text-stone-400 leading-relaxed font-serif italic">
+                        — Gabriel García Márquez
+                    </p>
+                    <div class="flex items-center space-x-6">
+                        <a href="#menu" class="group relative px-8 py-4 overflow-hidden border border-white/10 glass-panel text-xs tracking-widest uppercase transition-all hover:border-yellow-500/50">
+                            <span class="relative z-10">Explore Menu</span>
+                            <div class="absolute inset-0 bg-yellow-500/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-32 px-6 md:px-12 text-center max-w-4xl mx-auto relative" id="about">
+        <div class="mb-12">
+            <iconify-icon icon="lucide:feather" width="32" class="text-yellow-600/50 mb-8"></iconify-icon>
+            <h2 class="text-4xl md:text-5xl font-serif tracking-tight mb-8 text-white">Magic Realism</h2>
+        </div>
+        <p class="text-stone-300 font-light leading-relaxed text-lg md:text-2xl font-serif italic">
+            "Inspired by the intricate world of <span class="text-yellow-500 underline underline-offset-8 decoration-yellow-500/30">Gabriel García Márquez</span>, Macondo is not just a cafe; it is a paused moment in time. Our walls breathe with vibrant murals, while the air carries the heavy, sweet aroma of roasting beans."
+        </p>
+        <p class="text-stone-500 mt-10 text-sm tracking-widest uppercase font-light">
+            We invite you to sit, read, and lose yourself in the labyrinth of flavor.
+        </p>
+        <div class="w-px h-24 bg-gradient-to-b from-yellow-600/50 to-transparent mx-auto mt-16"></div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="py-32 px-6 md:px-12 max-w-5xl mx-auto" id="menu">
+        <div class="text-center mb-24 relative">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl font-serif text-white opacity-[0.03] select-none pointer-events-none uppercase tracking-widest">
+                Provisions
+            </div>
+            <h2 class="text-4xl font-serif tracking-tight text-white mb-4">Curated Provisions</h2>
+            <div class="h-px w-12 bg-yellow-500/50 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-12">
+            <!-- First Column -->
+            <div class="space-y-12">
+                <div class="group cursor-default">
+                    <div class="flex items-baseline justify-between">
+                        <span class="group-hover:text-yellow-400 transition-colors text-base font-medium text-stone-200">Burrata Salad</span>
+                        <div class="flex-grow mx-4 border-b border-white/5 relative -top-1"></div>
+                        <span class="text-sm font-light text-yellow-500/80 tabular-nums">4,700</span>
+                    </div>
+                    <p class="text-[11px] font-light text-stone-500 mt-2 uppercase tracking-widest leading-relaxed">Prosciutto, cheese burrata, peach</p>
+                </div>
+
+                <div class="group cursor-default">
+                    <div class="flex items-baseline justify-between">
+                        <span class="group-hover:text-yellow-400 transition-colors text-base font-medium text-stone-200">Macondo Salad</span>
+                        <div class="flex-grow mx-4 border-b border-white/5 relative -top-1"></div>
+                        <span class="text-sm font-light text-yellow-500/80 tabular-nums">4,600</span>
+                    </div>
+                    <p class="text-[11px] font-light text-stone-500 mt-2 uppercase tracking-widest leading-relaxed">Pork fillet, sauce roquefort, pine nut</p>
+                </div>
+
+                <div class="group cursor-default">
+                    <div class="flex items-baseline justify-between">
+                        <span class="group-hover:text-yellow-400 transition-colors text-base font-medium text-stone-200">Pizza Mortadella</span>
+                        <div class="flex-grow mx-4 border-b border-white/5 relative -top-1"></div>
+                        <span class="text-sm font-light text-yellow-500/80 tabular-nums">3,600</span>
+                    </div>
+                    <p class="text-[11px] font-light text-stone-500 mt-2 uppercase tracking-widest leading-relaxed">White sauce, mortadella, stracciatella</p>
+                </div>
+            </div>
+
+            <!-- Second Column -->
+            <div class="space-y-12">
+                <div class="group cursor-default">
+                    <div class="flex items-baseline justify-between">
+                        <span class="group-hover:text-yellow-400 transition-colors text-base font-medium text-stone-200">Steak Ribeye</span>
+                        <div class="flex-grow mx-4 border-b border-white/5 relative -top-1"></div>
+                        <span class="text-sm font-light text-yellow-500/80 tabular-nums">14,500</span>
+                    </div>
+                    <p class="text-[11px] font-light text-stone-500 mt-2 uppercase tracking-widest leading-relaxed">Pepper sauce, rosemary, cherry tomato</p>
+                </div>
+
+                <div class="group cursor-default">
+                    <div class="flex items-baseline justify-between">
+                        <span class="group-hover:text-yellow-400 transition-colors text-base font-medium text-stone-200">Seafood Pasta</span>
+                        <div class="flex-grow mx-4 border-b border-white/5 relative -top-1"></div>
+                        <span class="text-sm font-light text-yellow-500/80 tabular-nums">13,500</span>
+                    </div>
+                    <p class="text-[11px] font-light text-stone-500 mt-2 uppercase tracking-widest leading-relaxed">Oysters, octopus, squids, salmon, shrimp</p>
+                </div>
+
+                <div class="group cursor-default">
+                    <div class="flex items-baseline justify-between">
+                        <span class="group-hover:text-yellow-400 transition-colors text-base font-medium text-stone-200">Lemon Mousse</span>
+                        <div class="flex-grow mx-4 border-b border-white/5 relative -top-1"></div>
+                        <span class="text-sm font-light text-yellow-500/80 tabular-nums">3,300</span>
+                    </div>
+                    <p class="text-[11px] font-light text-stone-500 mt-2 uppercase tracking-widest leading-relaxed">Gluten free, orange zest, memories</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-32 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+                <h2 class="text-4xl font-serif tracking-tight text-white">The Atmosphere</h2>
+                <p class="text-xs tracking-[0.3em] uppercase text-stone-500 mt-4">Visual Echoes of One Hundred Years</p>
+            </div>
+            <div class="flex space-x-2">
+                <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-stone-400 hover:border-yellow-500 hover:text-yellow-500 transition-all cursor-pointer">
+                    <iconify-icon icon="lucide:camera" width="18"></iconify-icon>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+            <div class="break-inside-avoid relative group overflow-hidden glass-panel p-2">
+                <div class="relative overflow-hidden aspect-[3/4]">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/de84dfbd-c02b-4531-8783-925f612c0731_800w.png" 
+                         alt="Wall texture" 
+                         class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 group-hover:rotate-1 transition-transform duration-1000 grayscale-[0.5] contrast-125">
+                </div>
+            </div>
+            <div class="break-inside-avoid relative group overflow-hidden glass-panel p-2">
+                <div class="relative overflow-hidden aspect-video">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3adfea09-39bf-4ad2-9397-44d4be116a8c_800w.png" 
+                         alt="Cafe interior" 
+                         class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-1000">
+                    <div class="absolute inset-0 bg-stone-900/40 mix-blend-multiply"></div>
+                </div>
+            </div>
+            <div class="break-inside-avoid relative group overflow-hidden glass-panel p-2">
+                <div class="relative overflow-hidden aspect-square">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9da7879d-4d6d-49d2-bd40-fed341743635_800w.png" 
+                         alt="Leaf shadow" 
+                         class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-110 transition-transform duration-1000">
+                </div>
+            </div>
+            <div class="break-inside-avoid relative group overflow-hidden glass-panel p-2">
+                <div class="relative overflow-hidden aspect-[4/5]">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b6be6668-c2f9-4b2e-801b-81fc13a052d6_800w.png" 
+                         alt="Old colonial wall" 
+                         class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-1000">
+                    <div class="absolute inset-0 bg-yellow-900/10 mix-blend-overlay"></div>
+                </div>
+            </div>
+            <div class="break-inside-avoid relative group overflow-hidden glass-panel p-2">
+                <div class="relative overflow-hidden aspect-square">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5c7634a8-694f-48d8-abe2-f6a04ffa46d5_800w.png" 
+                         alt="Drink detail" 
+                         class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-1000 contrast-125">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="pt-24 pb-12 px-6 border-t border-white/5 bg-[#0b170f]">
+        <div class="max-w-7xl mx-auto flex flex-col items-center space-y-12">
+            <div class="text-center space-y-4">
+                <iconify-icon icon="lucide:flower-2" width="32" class="text-yellow-600/40 mx-auto"></iconify-icon>
+                <h2 class="font-serif text-2xl tracking-widest text-white uppercase">Macondo</h2>
+                <p class="text-xs tracking-widest text-stone-500 max-w-xs mx-auto">
+                    Where the line between what is lived and what is told disappears.
+                </p>
+            </div>
+            
+            <div class="flex space-x-12">
+                <a href="#" class="text-stone-500 hover:text-yellow-500 transition-colors">
+                    <iconify-icon icon="lucide:instagram" width="20"></iconify-icon>
+                </a>
+                <a href="#" class="text-stone-500 hover:text-yellow-500 transition-colors">
+                    <iconify-icon icon="lucide:mail" width="20"></iconify-icon>
+                </a>
+                <a href="#" class="text-stone-500 hover:text-yellow-500 transition-colors">
+                    <iconify-icon icon="lucide:map-pin" width="20"></iconify-icon>
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between w-full pt-12 border-t border-white/5 gap-6">
+                <span class="text-[10px] uppercase tracking-widest text-stone-600">EST. 2025 • All Rights Reserved</span>
+                <div class="flex space-x-8 text-[10px] uppercase tracking-widest text-stone-600">
+                    <a href="#" class="hover:text-stone-400">Privacy</a>
+                    <a href="#" class="hover:text-stone-400">Terms</a>
+                    <a href="#" class="hover:text-stone-400">Press</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const toggle = document.getElementById('mobile-toggle');
+        toggle.addEventListener('click', () => {
+            console.log('Mobile menu requested');
+        });
+    </script>
+</body>
+
+</html>
